@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_01_101656) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_01_105314) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.decimal "balance"
@@ -18,4 +18,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_01_101656) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "fx_transactions", force: :cascade do |t|
+    t.string "identifier"
+    t.decimal "input_amount"
+    t.string "input_currency"
+    t.decimal "output_amount"
+    t.string "output_currency"
+    t.date "date_of_transaction"
+    t.integer "customer_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["customer_id"], name: "index_fx_transactions_on_customer_id"
+  end
+
+  add_foreign_key "fx_transactions", "customers"
 end
