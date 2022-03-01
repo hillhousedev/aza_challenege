@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_03_01_105314) do
+ActiveRecord::Schema[7.0].define(version: 2022_03_01_142206) do
   create_table "customers", force: :cascade do |t|
     t.string "name"
     t.decimal "balance"
@@ -29,6 +29,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_03_01_105314) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["customer_id"], name: "index_fx_transactions_on_customer_id"
+    t.index ["identifier"], name: "unique_identifier", unique: true
   end
 
   add_foreign_key "fx_transactions", "customers"
